@@ -41,9 +41,6 @@ sce <- project_cycle_space(sce, gname.type = "SYMBOL", species = "human")
 # Estimate cell cycle stages using Schwabe model
 sce <- estimate_Schwabe_stage(sce, gname.type = "SYMBOL", species = 'human')
 
-# Extract cell cycle stage assignments
-ccStage <- as.data.frame(sce$CCStage)
-
 # Get projection coordinates from tricycle embedding
 reducedDimNames(sce)  # Check available reduced dimensions
 projection_vectors <- reducedDim(sce, "tricycleEmbedding")  # Get coordinates
@@ -52,7 +49,8 @@ head(projection_vectors)
 # Create plotting dataframe with projection coordinates and original stages
 plot_df <- as.data.frame(projection_vectors)
 plot_df$stage <- res$obs$stage  # Add original stage annotations
-
+plot_df$predict <- sce$CCStage
+plot_df$true <- res$obs$true
 # Preview and save results
 print(head(plot_df))
 write.csv(plot_df, '/root/Cycle/HarmoCycle_v1/Result/Tricycle/Projection_Hsiao.csv')
