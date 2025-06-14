@@ -5,7 +5,7 @@ library(scran)
 library(tricycle)
 
 # Read the h5ad file containing single-cell data
-res <- anndata::read_h5ad('/remote-home/share/data2/wbl/wbl_cellcycle/ground-truth/dataset6_Mahdessian/processed_adata_with_symbols.h5ad')
+res <- anndata::read_h5ad('/remote-home/share/data2/wbl/wbl_cellcycle/ground-truth/ref_dataset_Mahdessian.h5ad')
 
 # Extract and transpose expression matrix
 expr <- as.matrix(res$X)  # Get expression matrix
@@ -19,7 +19,7 @@ print(length(rownames(res$var)))  # Number of genes in var
 print(length(rownames(res$obs)))  # Number of cells in obs
 
 # Update rownames with gene symbols from var metadata
-rownames(expr) <- res$var$gene_symbol
+rownames(expr) <- rownames(res$var)
 
 # Create SingleCellExperiment object
 # - counts: expression matrix
@@ -28,7 +28,7 @@ rownames(expr) <- res$var$gene_symbol
 sce <- SingleCellExperiment(
   assays = list(counts = expr),
   colData = data.frame(cell_id = rownames(res$obs)),  # Store cell IDs
-  rowData = data.frame(gene_name = res$var$gene_symbol)  # Store gene symbols
+  rowData = data.frame(gene_name = rownames(res$var))  # Store gene symbols
 )
 
 # Normalize counts using scran's logNormCounts
