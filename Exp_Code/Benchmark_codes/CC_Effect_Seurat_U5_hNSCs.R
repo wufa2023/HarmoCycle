@@ -111,4 +111,4 @@ p2 <- ggplot(result_df, aes(x = PC1, y = PC2, color = as.factor(stage), size = s
 
 p2
 
-## output: 平均轮廓系数: -0.07587084
+save(seurat_obj, corrected_seurat, file = "/home/wenbaole/Cycle/res//CC_hU2OS_seurat_objects.rda")
