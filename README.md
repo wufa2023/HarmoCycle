@@ -1,2 +1,4 @@
 # HarmoCycle
-Wow！
+
+
+It's my idea of heart and soul
