@@ -111,4 +111,4 @@ p2 <- ggplot(result_df, aes(x = PC1, y = PC2, color = as.factor(stage), size = s
 
 p2
 
-save(seurat_obj, corrected_seurat, file = "/home/wenbaole/Cycle/res//CC_hU2OS_seurat_objects.rda")
+save(seurat_obj, corrected_seurat, file = "/home/wenbaole/Cycle/res//CC_U5hNSCs_seurat_objects.rda")
